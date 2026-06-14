@@ -29,25 +29,65 @@ export const checkAllMCPs =
       academics: "offline",
     };
 
-    try {
-      await axios.get(`${LIBRARY}`);
-      result.library = "online";
-    } catch {}
+   try {
+  await axios.get(`${LIBRARY}`);
+  result.library = "online";
+} catch (error: any) {
+  console.log(
+    "Library Error:",
+    error?.message
+  );
 
-    try {
-      await axios.get(`${EVENTS}`);
-      result.events = "online";
-    } catch {}
+  console.log(
+    "Library Response:",
+    error?.response?.data
+  );
+}
 
-    try {
-      await axios.get(`${CAFETERIA}`);
-      result.cafeteria = "online";
-    } catch {}
+try {
+  await axios.get(`${EVENTS}`);
+  result.events = "online";
+} catch (error: any) {
+  console.log(
+    "Events Error:",
+    error?.message
+  );
 
-    try {
-      await axios.get(`${ACADEMICS}`);
-      result.academics = "online";
-    } catch {}
+  console.log(
+    "Events Response:",
+    error?.response?.data
+  );
+}
+
+try {
+  await axios.get(`${CAFETERIA}`);
+  result.cafeteria = "online";
+} catch (error: any) {
+  console.log(
+    "Cafeteria Error:",
+    error?.message
+  );
+
+  console.log(
+    "Cafeteria Response:",
+    error?.response?.data
+  );
+}
+
+try {
+  await axios.get(`${ACADEMICS}`);
+  result.academics = "online";
+} catch (error: any) {
+  console.log(
+    "Academics Error:",
+    error?.message
+  );
+
+  console.log(
+    "Academics Response:",
+    error?.response?.data
+  );
+}
 
     return result;
   };
