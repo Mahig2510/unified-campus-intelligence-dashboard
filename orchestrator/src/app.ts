@@ -43,5 +43,14 @@ app.get("/", (_req, res) => {
 });
 app.use(notFound);
 app.use(errorHandler);
+app.get("/test-academics", async (_req, res) => {
+  const axios = require("axios");
+
+  const response = await axios.get(
+    "https://academics-mcp.onrender.com/api/resources"
+  );
+
+  res.json(response.data);
+});
 
 export default app;
