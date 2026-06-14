@@ -30,17 +30,23 @@ export const checkAllMCPs =
     };
 
    try {
-  await axios.get(`${LIBRARY}`);
+  const response = await axios.get(LIBRARY!);
+
+  console.log(
+    "Library Status:",
+    response.status
+  );
+
+  console.log(
+    "Library Data:",
+    response.data
+  );
+
   result.library = "online";
 } catch (error: any) {
   console.log(
     "Library Error:",
-    error?.message
-  );
-
-  console.log(
-    "Library Response:",
-    error?.response?.data
+    error.message
   );
 }
 
