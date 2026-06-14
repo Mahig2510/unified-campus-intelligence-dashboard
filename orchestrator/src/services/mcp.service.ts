@@ -12,6 +12,14 @@ const CAFETERIA =
 const ACADEMICS =
   process.env.ACADEMICS_MCP;
 
+console.log("MCP URLs:");
+console.log({
+  LIBRARY,
+  EVENTS,
+  CAFETERIA,
+  ACADEMICS,
+});
+
 export const checkAllMCPs =
   async () => {
     const result = {
