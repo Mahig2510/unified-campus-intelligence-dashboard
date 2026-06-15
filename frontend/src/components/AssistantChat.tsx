@@ -49,13 +49,13 @@ const AssistantChat = () => {
           await askAssistant(
             currentQuery
           );
-
+console.log(response.data);
         setMessages((prev) => [
           ...prev,
           {
             role: "assistant",
             content:
-              response.data.answer,
+              response.data.data.answer,
           },
         ]);
 
