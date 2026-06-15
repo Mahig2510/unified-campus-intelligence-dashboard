@@ -27,12 +27,31 @@ export const healthCheck =
     _req: Request,
     res: Response
   ): Promise<void> => {
-    const books =
-      await getBooks();
 
-    res.status(200).json(
-      books
-    );
+    try {
+
+      const books =
+        await getBooks();
+
+      res.status(200).json(
+        books
+      );
+
+    } catch (error: any) {
+
+      console.error(
+        "Books Error:",
+        error?.response?.data ||
+        error?.message
+      );
+
+      res.status(500).json({
+        success: false,
+        error:
+          error?.response?.data ||
+          error?.message,
+      });
+    }
   };
 
 export const fetchEvents =
