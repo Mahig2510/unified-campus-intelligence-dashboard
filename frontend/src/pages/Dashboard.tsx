@@ -42,46 +42,41 @@ const Dashboard = () => {
 
   useEffect(() => {
 
-    const loadData =
-      async () => {
+    const loadData = async () => {
+  try {
+    const results = await Promise.allSettled([
+      getBooks(),
+      getEvents(),
+      getMenu(),
+      getResources(),
+    ]);
 
-        try {
+    if (results[0].status === "fulfilled") {
+      setBooks(results[0].value.data.books || []);
+    }
 
-          const [
-            booksRes,
-            eventsRes,
-            menuRes,
-            resourcesRes,
-          ] = await Promise.all([
-            getBooks(),
-            getEvents(),
-            getMenu(),
-            getResources(),
-          ]);
+    if (results[1].status === "fulfilled") {
+      setEvents(results[1].value.data.events || []);
+    }
 
-          setBooks(
-            booksRes.data.books || []
-          );
+    if (results[2].status === "fulfilled") {
+      setMenuItems(
+        results[2].value.data.menuItems || []
+      );
+    }
 
-          setEvents(
-            eventsRes.data.events || []
-          );
+    if (results[3].status === "fulfilled") {
+      setResources(
+        results[3].value.data.resources || []
+      );
+    }
 
-          setMenuItems(
-            menuRes.data.menuItems || []
-          );
-
-          setResources(
-            resourcesRes.data.resources || []
-          );
-
-          setLoading(false);
-
-        } catch (error) {
-
-          console.error(error);
-        }
-      };
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
 
     loadData();
 
