@@ -99,6 +99,10 @@ try {
   };
 
   export const getBooks = async () => {
+     console.log(
+    "Calling:",
+    `${LIBRARY}/api/books`
+  );
   const response = await axios.get(
     `${LIBRARY}/api/books`
   );
@@ -107,6 +111,7 @@ try {
 };
 
 export const getEvents = async () => {
+  console.log("Calling:", `${EVENTS}/api/events`);
   const response = await axios.get(
     `${EVENTS}/api/events`
   );
@@ -115,6 +120,7 @@ export const getEvents = async () => {
 };
 
 export const getMenuItems = async () => {
+  console.log("Calling:", `${CAFETERIA}/api/menu`);
   const response = await axios.get(
     `${CAFETERIA}/api/menu`
   );
@@ -124,6 +130,7 @@ export const getMenuItems = async () => {
 
 export const getResources =
   async () => {
+    console.log("Calling:", `${ACADEMICS}/api/resources`);
     const response =
       await axios.get(
         `${ACADEMICS}/api/resources`
